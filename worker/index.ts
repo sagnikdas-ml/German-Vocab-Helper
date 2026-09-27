@@ -79,7 +79,7 @@ export default {
     if (request.method === 'GET') payload = { action: 'list' };
     else if (request.method === 'POST') {
       try { payload = await request.json() as Record<string, unknown>; } catch { return json({ error: 'Invalid request.' }, 400); }
-      if (!['create', 'update', 'review', 'delete'].includes(String(payload.action))) return json({ error: 'Unsupported action.' }, 400);
+      if (!['create', 'update', 'practice', 'history', 'delete'].includes(String(payload.action))) return json({ error: 'Unsupported action.' }, 400);
     } else return json({ error: 'Method not allowed.' }, 405);
     try {
       const result = await upstream(env, payload);
